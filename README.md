@@ -28,11 +28,11 @@ We provide the [preprocessed data](https://drive.google.com/drive/folders/1gXDlP
 To do a quick test, download the [trained models](https://drive.google.com/drive/folders/1iFYoaqabmd86J4fB87ICPmfMoBX5nlkA?usp=sharing) and run:
 
 ```
-python -m apps.eval --results_path {path_of_output} --name {folder_of_output} --dataroot {path_of_dataset} --test_folder_path {folder_of_test_data} --load_netG_checkpoint_path {path_of_model} --anchor --num_steps 5 --filter_val 0.007
+python -m apps.eval --results_path {path_of_output} --name {folder_of_output} --dataroot {path_of_dataset} --test_folder_path {folder_of_test_data, e.g., 290-1} --load_netG_checkpoint_path ./checkpoints/anchor_udf_df3d/netG_epoch_59 --anchor --num_steps 5 --filter_val 0.007
 ```
 For the HD version:
 ```
-python -m apps.eval_hd --results_path {path_of_output} --name {folder_of_output} --dataroot {path_of_dataset} --test_folder_path {folder_of_test_data} --load_netMR_checkpoint_path {path_of_model} --anchor --merge_layer 2 --joint_train --loadSize 1024 --num_steps 5 --filter_val 0.007
+python -m apps.eval_hd --results_path {path_of_output} --name {folder_of_output} --dataroot {path_of_dataset} --test_folder_path {folder_of_test_data, e.g., 290-1} --load_netMR_checkpoint_path ./checkpoints/anchor_udf_hd_df3d/netMR_epoch_14 --anchor --merge_layer 2 --joint_train --loadSize 1024 --num_steps 5 --filter_val 0.007
 ```
 
 ### Training
