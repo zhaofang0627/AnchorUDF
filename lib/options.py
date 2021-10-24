@@ -96,7 +96,7 @@ class BaseOptions():
         parser.add_argument('--schedule', type=int, nargs='+', default=[100, 120],
                             help='Decrease learning rate at these epochs.')
         parser.add_argument('--gamma', type=float, default=0.1, help='LR is multiplied by gamma on schedule.')
-        parser.add_argument('--anchor', action='store_true', help='if computing ndf with pc')
+        parser.add_argument('--anchor', action='store_true', help='if computing udf with anchor')
         parser.add_argument('--reso_grid', type=int, default=32, help='# resolution of grid')
         parser.add_argument('--pn_hid_dim', type=int, default=32, help='# hidden dim of point net')
         parser.add_argument('--num_anchor_points', type=int, default=600, help='number of anchor points')

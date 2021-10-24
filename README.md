@@ -6,18 +6,26 @@ This repository contains the code for the paper:
 
 ![](pics/examples.png)
 
-### To-Do list
-- [ ] Add environment yml file.
-- [ ] Upload preprocessed data and trained models.
-
 ### Requirements
 - Cuda 9.2
 - Python 3.7
 - Pytorch 1.6
 
+To install all python dependencies for this project:
+```
+conda env create -f env_anchor_udf.yml
+conda activate AnchorUDF
+```
+
+### Dataset
+
+- [Deep Fashion3D](https://github.com/kv2000/deepFashion3D)
+
+We provide the [preprocessed data](https://drive.google.com/drive/folders/1gXDlPGYYVad8IkFo_gxd-NOcFEgomwT0?usp=sharing) used for model training and evaluation. You can prepare your own data by following the data generation steps of [PIFu](https://github.com/shunsukesaito/PIFu).
+
 ### Demo
 
-To run the demo:
+To do a quick test, download the [trained models](https://drive.google.com/drive/folders/1iFYoaqabmd86J4fB87ICPmfMoBX5nlkA?usp=sharing) and run:
 
 ```
 python -m apps.eval --results_path {path_of_output} --name {folder_of_output} --dataroot {path_of_dataset} --test_folder_path {folder_of_test_data} --load_netG_checkpoint_path {path_of_model} --anchor --num_steps 5 --filter_val 0.007
