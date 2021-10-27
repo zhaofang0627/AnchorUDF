@@ -18,7 +18,7 @@ def load_trimesh_df3d(root_dir):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='Run boundary sampling'
+        description='Run error computing'
     )
     parser.add_argument('--results_path', type=str, default='./results_eval', help='path to save results')
     parser.add_argument('--root_path', type=str, help='path to dataset root')

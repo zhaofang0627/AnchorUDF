@@ -34,6 +34,10 @@ For the HD version:
 ```
 python -m apps.eval_hd --results_path {path_of_output} --name {folder_of_output} --dataroot {path_of_dataset} --test_folder_path {folder_of_test_data, e.g., 290-1} --load_netMR_checkpoint_path ./checkpoints/anchor_udf_hd_df3d/netMR_epoch_14 --anchor --merge_layer 2 --joint_train --loadSize 1024 --num_steps 5 --filter_val 0.007
 ```
+Optionally, you can remove outliers by statistical outlier removal:
+```
+python -m apps.remove_outlier --file_path {path_of_file} --nb_neighbors 5 --std_ratio 10.0
+```
 
 ### Training
 
