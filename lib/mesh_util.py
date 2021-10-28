@@ -105,6 +105,18 @@ def reconstruction_anchor(net, cuda, calib_tensor, b_min, b_max, max_dist=0.1, f
     return samples_cpu
 
 
+def create_grid_points_from_bounds(minimun, maximum, res):
+    x = np.linspace(minimun, maximum, res)
+    X, Y, Z = np.meshgrid(x, x, x, indexing='ij')
+    X = X.reshape((np.prod(X.shape),))
+    Y = Y.reshape((np.prod(Y.shape),))
+    Z = Z.reshape((np.prod(Z.shape),))
+
+    points_list = np.column_stack((X, Y, Z))
+    del X, Y, Z, x
+    return points_list
+
+
 def save_obj_mesh(mesh_path, verts, faces):
     file = open(mesh_path, 'w')
 

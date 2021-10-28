@@ -10,6 +10,7 @@ This repository contains the code for the paper:
 - Cuda 9.2
 - Python 3.7
 - Pytorch 1.6
+- [ChamferDistancePytorch](https://github.com/ThibaultGROUEIX/ChamferDistancePytorch)
 
 To install all python dependencies for this project:
 ```

@@ -9,7 +9,7 @@ from .DepthNormalizer import DepthNormalizer
 from .HGFilters import *
 from ..net_util import init_net
 from ChamferDistancePytorch.chamfer3D import dist_chamfer_3D
-import data_processing.implicit_waterproofing as iw
+from ..mesh_util import create_grid_points_from_bounds
 from .PointNet import PointNet
 from .. import diff_operators
 from ..geometry import index
@@ -60,7 +60,7 @@ class AnchorUdfNet(BasePIFuNet):
         bb_min = -1.0
         bb_max = 1.0
 
-        self.grid_points = iw.create_grid_points_from_bounds(bb_min, bb_max, self.reso_grid)
+        self.grid_points = create_grid_points_from_bounds(bb_min, bb_max, self.reso_grid)
         self.kdtree = KDTree(self.grid_points)
 
         self.svr_net = PointNet(hidden_dim=opt.pn_hid_dim)
