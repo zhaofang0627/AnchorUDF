@@ -84,7 +84,7 @@ class TrainDatasetDF3DHD(Dataset):
                                    hue=opt.aug_hue)
         ])
 
-        if not (self.opt.ndf or self.opt.ndf_pc):
+        if not (self.opt.ndf or self.opt.anchor):
             self.mesh_dic = load_trimesh(self.OBJ)
 
     def get_subjects(self):

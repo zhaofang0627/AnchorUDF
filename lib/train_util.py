@@ -61,7 +61,7 @@ def gen_mesh_udf(opt, net, cuda, data, save_path, num_steps=10, num_points=90000
     save_img = np.concatenate(save_img_list, axis=1)
     Image.fromarray(np.uint8(save_img[:,:,::-1])).save(save_img_path)
 
-    if opt.ndf_pc:
+    if opt.anchor:
         verts = reconstruction_anchor(net, cuda, calib_tensor, b_min, b_max, max_dist=opt.max_dist, filter_val=opt.filter_val, num_steps=num_steps, num_points=num_points)
 
         for i in range(net.hg_pc.size(0)):
@@ -95,7 +95,7 @@ def gen_mesh_hd_udf(opt, net, cuda, data, save_path, num_steps=10, num_points=90
     save_img = np.concatenate(save_img_list, axis=1)
     Image.fromarray(np.uint8(save_img[:,:,::-1])).save(save_img_path)
 
-    if opt.ndf_pc:
+    if opt.anchor:
         verts = reconstruction_anchor(net, cuda, calib_tensor, b_min, b_max, max_dist=opt.max_dist, filter_val=opt.filter_val, num_steps=num_steps, num_points=num_points)
 
         for i in range(net.netG.hg_pc.size(0)):
