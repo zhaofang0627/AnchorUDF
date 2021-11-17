@@ -50,8 +50,6 @@ class TrainDatasetDF3D(Dataset):
         self.num_views = self.opt.num_views
 
         self.num_sample_inout = self.opt.num_sample_inout
-        self.num_sample_color = self.opt.num_sample_color
-
         self.num_key_points = self.opt.num_anchor_points
 
         self.sample_distribution = np.array(self.opt.sample_distribution)
@@ -77,9 +75,6 @@ class TrainDatasetDF3D(Dataset):
             transforms.ColorJitter(brightness=opt.aug_bri, contrast=opt.aug_con, saturation=opt.aug_sat,
                                    hue=opt.aug_hue)
         ])
-
-        if not (self.opt.ndf or self.opt.anchor):
-            self.mesh_dic = load_trimesh(self.OBJ)
 
     def get_subjects(self):
         all_subjects = os.listdir(self.RENDER)
@@ -247,31 +242,18 @@ class TrainDatasetDF3D(Dataset):
         sample_neighbors = []
 
         for i, num in enumerate(self.num_samples):
-            if self.opt.grad_constraint:
-                boundary_samples_path = os.path.join(self.TARGET, subject, 'boundary_{}_direct_samples.npz'.format(self.sample_sigmas[i]))
-                boundary_samples_npz = np.load(boundary_samples_path)
-                boundary_sample_points = boundary_samples_npz['points']
-                boundary_sample_df = boundary_samples_npz['df']
-                boundary_sample_neighbors = boundary_samples_npz['neighbors']
-                total_indices = np.arange(boundary_sample_points.shape[0])
-                np.random.shuffle(total_indices)
-                sample_indices = total_indices[:num]
+            boundary_samples_path = os.path.join(self.TARGET, subject, 'boundary_{}_direct_samples.npz'.format(self.sample_sigmas[i]))
+            boundary_samples_npz = np.load(boundary_samples_path)
+            boundary_sample_points = boundary_samples_npz['points']
+            boundary_sample_df = boundary_samples_npz['df']
+            boundary_sample_neighbors = boundary_samples_npz['neighbors']
+            total_indices = np.arange(boundary_sample_points.shape[0])
+            np.random.shuffle(total_indices)
+            sample_indices = total_indices[:num]
 
-                sample_points.extend(boundary_sample_points[sample_indices])
-                distances.extend(boundary_sample_df[sample_indices])
-                sample_neighbors.extend(boundary_sample_neighbors[sample_indices])
-
-            else:
-                boundary_samples_path = os.path.join(self.TARGET, subject, 'boundary_{}_samples.npz'.format(self.sample_sigmas[i]))
-                boundary_samples_npz = np.load(boundary_samples_path)
-                boundary_sample_points = boundary_samples_npz['points']
-                boundary_sample_df = boundary_samples_npz['df']
-                total_indices = np.arange(boundary_sample_points.shape[0])
-                np.random.shuffle(total_indices)
-                sample_indices = total_indices[:num]
-
-                sample_points.extend(boundary_sample_points[sample_indices])
-                distances.extend(boundary_sample_df[sample_indices])
+            sample_points.extend(boundary_sample_points[sample_indices])
+            distances.extend(boundary_sample_df[sample_indices])
+            sample_neighbors.extend(boundary_sample_neighbors[sample_indices])
 
         assert len(sample_points) == self.num_sample_inout
         assert len(distances) == self.num_sample_inout
