@@ -44,7 +44,7 @@ python -m apps.remove_outlier --file_path {path_of_file} --nb_neighbors 5 --std_
 
 To generate targets for training:
 ```
-python -m apps.gen_targets --dataroot {path_of_dataset} --sigma {0.003, 0.02, or 0.08} --point_num 600
+python -m apps.gen_targets --dataroot {path_of_dataset} --sigma {0.003, 0.02, AND 0.08, separately} --point_num 600
 ```
 
 To train the model:
